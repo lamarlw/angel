@@ -713,7 +713,55 @@
   }
 
   @media (max-width: 600px){
-    .gallery{ columns: 2 140px; }
+    /* Ensure gallery doesn't use multicolumn layout on small screens */
+    .gallery{
+      columns: unset;
+      max-width: 100%;
+      padding: 0 1rem;
+    }
+    /* Make slideshow adapt to narrow viewports */
+    .slideshow{
+      min-height: auto;
+      max-height: none;
+      position: relative;
+      overflow: visible;
+    }
+    .slide{
+      position: relative;
+      inset: auto;
+      opacity: 1;
+      transform: none;
+      display: block;
+      pointer-events: auto;
+      margin: 0 auto 1rem;
+    }
+    .slide figure{
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 9/16;
+      margin: 0 auto;
+      border-radius: 20px;
+    }
+    .slide img{ width:100%; height:100%; object-fit: cover; display:block; }
+    .slide-controls{
+      position: relative;
+      left: auto;
+      bottom: auto;
+      transform: none;
+      margin: 0.5rem auto 0;
+      display: flex;
+      justify-content: center;
+    }
+    .gallery-indicators{
+      position: relative;
+      left: auto;
+      bottom: auto;
+      transform: none;
+      margin: 0.5rem auto 1rem;
+      display: flex;
+      justify-content: center;
+    }
     #proposal h1{ padding: 0 0.5rem; }
     .btn-row{ gap: 1.2rem; }
   }
