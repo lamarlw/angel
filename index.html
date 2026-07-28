@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Angel 💗</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --white: #FFFFFF;
+    --cream: #FFF9FB;
+    --pink: #FF8FAB;
+    --pink-deep: #FF5D8F;
+    --lavender: #EDE7FA;
+    --violet: #7C5CBF;
+    --text: #4A3B57;
+    --shadow: rgba(124, 92, 191, 0.18);
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+    background: linear-gradient(135deg, #f9e3fb 0%, #fde6f0 35%, #f8f0ff 70%, #ffffff 100%);
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(255,255,255,0.88) 0 8%, transparent 8%),
+      radial-gradient(circle at 42% 12%, rgba(255,141,171,0.3) 0 7%, transparent 7%),
+      radial-gradient(circle at 72% 22%, rgba(124,92,191,0.24) 0 9%, transparent 9%),
+      radial-gradient(circle at 22% 68%, rgba(255,255,255,0.92) 0 6%, transparent 6%),
+      radial-gradient(circle at 55% 62%, rgba(255,143,171,0.28) 0 8%, transparent 8%),
+      radial-gradient(circle at 85% 72%, rgba(124,92,191,0.2) 0 10%, transparent 10%),
+      radial-gradient(circle at 18% 35%, rgba(124,92,191,0.12) 0 11%, transparent 11%),
+      radial-gradient(circle at 62% 28%, rgba(255,255,255,0.85) 0 7%, transparent 7%);
+    background-blend-mode: normal, screen, screen, screen, screen, screen, screen, screen;
+    background-size: auto, 240px 240px, 220px 220px, 260px 260px, 220px 220px, 240px 240px, 280px 280px, 210px 210px;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .heading{
+    font-family: 'Fredoka One', cursive;
+    color: var(--pink-deep);
+  }
+
+  .accent{ font-family: 'Quicksand', sans-serif; font-weight: 700; color: var(--violet); }
+
+  /* ---------- FLOATING HEARTS (ambient, whole site) ---------- */
+  #heart-field{
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .floaty-heart{
+    position: absolute;
+    bottom: -10%;
+    font-size: 1.4rem;
+    opacity: 0.55;
+    animation: floatUp linear infinite;
+    color: var(--pink);
+  }
+  @keyframes floatUp{
+    0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.5; }
+    100% { transform: translateY(-110vh) translateX(20px) rotate(25deg); opacity: 0; }
+  }
+
+  /* ---------- PROPOSAL SCREEN ---------- */
+  #proposal{
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    background:
+      linear-gradient(135deg, rgba(255, 143, 171, 0.8), rgba(124, 92, 191, 0.7)),
+      url('images/alexa.jpg') center/cover no-repeat;
+    overflow: hidden;
+    z-index: 2;
+  }
+
+  #proposal h1{
+    font-size: clamp(1.8rem, 6vw, 3.2rem);
+    max-width: 700px;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+    z-index: 3;
+    text-shadow: 0 3px 12px rgba(0,0,0,0.25);
+    color: white;
+  }
+
+  #proposal p.sub{
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+    margin-bottom: 3rem;
+    font-size: 1.05rem;
+    z-index: 3;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    font-weight: 700;
+  }
+
+  .btn-row{
+    position: relative;
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 140px;
+    z-index: 3;
+  }
+
+  .choice-btn{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    padding: 1rem 2.4rem;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+    backdrop-filter: blur(6px);
+  }
+
+  #yes-btn{
+    background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+    color: white;
+  }
+  #yes-btn:hover{
+    transform: scale(1.08);
+    box-shadow: 0 12px 26px var(--shadow);
+  }
+
+  #no-btn{
+    background: var(--white);
+    color: var(--violet);
+    border: 2px solid var(--lavender);
+    position: fixed; /* becomes fixed once it starts running so it can roam the whole viewport */
+  }
+
+  #proposal-note{
+    margin-top: 2.5rem;
+    font-size: 0.95rem;
+    color: white;
+    font-style: italic;
+    z-index: 3;
+    min-height: 1.4rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  /* ---------- REVEAL / MAIN SITE ---------- */
+  #site{
+    display: none;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+  #site.visible{ display: block; }
+
+  section{
+    padding: 5rem 2rem;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    position: relative;
+  }
+
+  /* HERO */
+  #hero{
+    text-align: center;
+    padding-top: 6rem;
+  }
+  #hero h1{
+    font-size: clamp(2rem, 7vw, 3.6rem);
+    margin-bottom: 1rem;
+  }
+  #hero .hero-photo{
+    width: min(320px, 80vw);
+    height: min(320px, 80vw);
+    margin: 2rem auto;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 8px solid var(--white);
+    box-shadow: 0 15px 40px var(--shadow);
+  }
+  #hero p{
+    font-family: 'Quicksand', sans-serif;
+    color: var(--violet);
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .scroll-cta{
+    display: inline-block;
+    margin-top: 2.5rem;
+    padding: 0.9rem 2rem;
+    background: var(--pink-deep);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    text-decoration: none;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 8px 20px var(--shadow);
+    transition: transform 0.15s ease;
+  }
+  .scroll-cta:hover{ transform: scale(1.06); }
+
+  .surprise-modal{
+    position: fixed;
+    inset: 0;
+    background: rgba(74, 59, 87, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    z-index: 60;
+  }
+  .surprise-modal.open{ display: flex; }
+  .surprise-modal-card{
+    background: var(--white);
+    border-radius: 24px;
+    padding: 2rem;
+    width: min(100%, 460px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    text-align: center;
+  }
+  .surprise-modal-card h3{ margin-bottom: 0.6rem; font-size: 1.5rem; }
+  .surprise-modal-card p{ font-family: 'Quicksand', sans-serif; color: var(--violet); margin-bottom: 1rem; }
+  .surprise-modal-card input{
+    width: 100%;
+    border: 2px solid var(--lavender);
+    border-radius: 999px;
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    outline: none;
+  }
+  .surprise-modal-card input:focus{ border-color: var(--pink); }
+  .modal-actions{ display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+  .ghost-btn{
+    border: none;
+    border-radius: 999px;
+    padding: 0.85rem 1.4rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    background: var(--lavender);
+    color: var(--violet);
+  }
+  .modal-error{ color: #d9486e; font-size: 0.95rem; margin-top: 0.7rem; min-height: 1.2rem; }
+
+  .surprise-step{ display: none; margin-top: 1rem; }
+  .surprise-step.active{ display: block; }
+  .puzzle-card{
+    background: linear-gradient(135deg, var(--white), var(--lavender));
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 15px 40px var(--shadow);
+    max-width: 860px;
+    margin: 0 auto 2rem;
+  }
+  .puzzle-preview{ display: none; }
+  .puzzle-board{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(90px, 1fr));
+    gap: 0.85rem;
+    max-width: 540px;
+    margin: 0 auto 1rem;
+  }
+  .drop-zone{
+    aspect-ratio: 1 / 1;
+    border: 2px dashed var(--pink);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  }
+  .drop-zone.filled{ border-style: solid; border-color: var(--pink-deep); transform: scale(1.02); }
+  .puzzle-tray{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(90px, 1fr));
+    gap: 0.85rem;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+  .puzzle-piece{
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 18px;
+    border: 3px solid white;
+    box-shadow: 0 8px 20px var(--shadow);
+    background-image: url('images/puzzle.jpg');
+    background-size: 300% 300%;
+    background-repeat: no-repeat;
+    cursor: grab;
+    transition: transform 0.15s ease;
+  }
+  .puzzle-piece.dragging{ opacity: 0.6; }
+  .puzzle-piece.placed{ cursor: default; transform: scale(0.97); }
+  .puzzle-status{ text-align: center; margin-top: 1rem; font-family: 'Quicksand', sans-serif; font-weight: 700; color: var(--violet); }
+
+  #gallery, #song, #letter-section{ display: none; }
+  #gallery.reveal-section, #song.reveal-section, #letter-section.reveal-section{ display: block; }
+
+  /* SECTION TITLES */
+  .section-title{
+    text-align: center;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    margin-bottom: 0.5rem;
+  }
+  .section-sub{
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--violet);
+    margin-bottom: 2.5rem;
+  }
+
+  #gallery{
+    position: relative;
+    overflow: hidden;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    background: radial-gradient(circle at 50% -10%, rgba(255,255,255,0.24), transparent 35%),
+                radial-gradient(circle at 20% 20%, rgba(255,245,230,0.08), transparent 20%),
+                linear-gradient(180deg, rgba(18, 7, 46, 0.05), rgba(18, 7, 46, 0.12));
+  }
+  #gallery::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 25%, rgba(255,255,255,0.25), transparent 28%),
+                radial-gradient(circle at 40% 30%, rgba(255,255,255,0.16), transparent 20%);
+    opacity: 0.75;
+    pointer-events: none;
+    filter: blur(18px);
+  }
+  #gallery::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 22%, rgba(255,240,192,0.24), transparent 22%),
+                radial-gradient(circle at 50% 25%, rgba(255,255,255,0.14), transparent 26%);
+    pointer-events: none;
+  }
+  #gallery .section-title,
+  #gallery .section-sub{
+    position: relative;
+    z-index: 2;
+  }
+
+  .gallery{
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    perspective: 1400px;
+    perspective-origin: 50% 15%;
+    position: relative;
+    z-index: 2;
+  }
+  .slideshow{
+    width: 100%;
+    min-height: 800px;
+    max-height: 900px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide{
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: scale(0.94);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .slide.active{
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+  .slide.active{
+    opacity: 1;
+    transform: scale(1);
+  }
+  .slide figure{
+    width: 90%;
+    max-width: 760px;
+    height: 600px;
+    max-height: 68vh;
+    margin: 0 auto;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(0,0,0,0.14);
+    box-shadow: 0 26px 62px rgba(0,0,0,0.26);
+  }
+  .slide figure::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.18), transparent 28%, transparent 65%, rgba(0,0,0,0.22));
+    pointer-events: none;
+  }
+  .slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1);
+    transition: transform 1s ease;
+  }
+  .slide.active img{
+    transform: scale(1.04);
+  }
+  .slide-caption{
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 720px;
+    background: rgba(4, 15, 45, 0.72);
+    color: white;
+    text-align: center;
+    padding: 0.85rem 1rem;
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.28);
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    z-index: 2;
+  }
+  .slide-controls{
+    position: absolute;
+    left: 50%;
+    bottom: 160px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.85rem;
+    z-index: 3;
+  }
+  .slide-button{
+    border: 1px solid rgba(255,255,255,0.24);
+    background: rgba(0,0,0,0.36);
+    color: white;
+    border-radius: 999px;
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    font-weight: 600;
+  }
+  .slide-button:hover{
+    transform: translateY(-1px);
+    background: rgba(255,255,255,0.12);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.24);
+  }
+  .gallery-indicators{
+    position: absolute;
+    left: 50%;
+    bottom: 54px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.65rem;
+    z-index: 2;
+  }
+  .indicator{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.75);
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  }
+  .indicator.active{
+    background: rgba(255,255,255,0.95);
+    border-color: rgba(255,255,255,1);
+    transform: scale(1.15);
+  }
+
+  /* LIGHTBOX */
+  #lightbox{
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(74, 59, 87, 0.85);
+    z-index: 50;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  #lightbox.open{ display: flex; }
+  #lightbox img{
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  }
+  #lightbox-close{
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: white;
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: var(--pink-deep);
+  }
+
+  /* SONG */
+  #song-card{
+    background: #121212;
+    border-radius: 30px;
+    padding: 1.75rem;
+    text-align: left;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    color: #fff;
+  }
+  #song-card::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(30,215,96,0.14), transparent 18%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08), transparent 18%),
+                radial-gradient(circle at 60% 80%, rgba(255,255,255,0.05), transparent 18%);
+    pointer-events: none;
+  }
+  #song-card::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 120%;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 45%);
+    pointer-events: none;
+  }
+  #song-card .album-art{
+    width: 190px;
+    min-width: 190px;
+    aspect-ratio: 1;
+    border-radius: 22px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #7c5cbf, #ff8fab);
+    box-shadow: 0 30px 45px rgba(0,0,0,0.35);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #song-card .album-art::after{
+    content: '♫';
+    position: absolute;
+    font-size: 4.25rem;
+    color: rgba(255,255,255,0.24);
+  }
+  #song-card .album-art img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  #song-card .song-info{
+    flex: 1 1 320px;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    z-index: 1;
+    align-items: center;
+    text-align: center;
+  }
+  #song-card .song-info .track-meta{
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .platform-badge{
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    background: #1ed760;
+    color: #000;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  #song-card h3{
+    font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+    margin: 0;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-family: 'Circular', 'Segoe UI', 'Arial', sans-serif;
+  }
+  #song-card .artist{
+    font-family: 'Circular', 'Segoe UI', 'Arial', sans-serif;
+    color: #b3b3b3;
+    margin-bottom: 0;
+    letter-spacing: 0.01em;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  #song-card audio{
+    width: 100%;
+    accent-color: #1ed760;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.07);
+    outline: none;
+  }
+  #song-card .note{
+    margin-top: 0.5rem;
+    font-family: 'Quicksand', sans-serif;
+    color: #d3d3d3;
+    max-width: 620px;
+    font-size: 0.96rem;
+    line-height: 1.8;
+  }
+  #song-card .spotify-link{
+    color: #1ed760;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  #song-card .spotify-link:hover{
+    text-decoration: underline;
+  }
+  @media (max-width: 720px){
+    #song-card{
+      padding: 1.5rem;
+      justify-content: center;
+    }
+    #song-card .album-art{
+      width: 180px;
+      min-width: auto;
+    }
+  }
+
+  /* LOVE LETTER */
+  #letter{
+    background: var(--white);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 15px 40px var(--shadow);
+    position: relative;
+  }
+  #letter::before{
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, var(--pink), var(--violet));
+    border-radius: 24px 24px 0 0;
+  }
+  #letter p{
+    font-family: 'Quicksand', sans-serif;
+    line-height: 1.9;
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+  }
+  #letter .signature{
+    font-family: 'Fredoka One', cursive;
+    color: var(--pink-deep);
+    font-size: 1.3rem;
+    text-align: right;
+    margin-top: 1.5rem;
+  }
+
+  footer{
+    text-align: center;
+    padding: 3rem 1rem 4rem;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--violet);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 600px){
+    .gallery{ columns: 2 140px; }
+    #proposal h1{ padding: 0 0.5rem; }
+    .btn-row{ gap: 1.2rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .floaty-heart{ animation: none; display:none; }
+    *{ scroll-behavior: auto !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div id="heart-field"></div>
+
+<!-- ================= PROPOSAL SCREEN ================= -->
+<section id="proposal">
+  <h1>Will you be my girlfriend<br>baby? 💗</h1>
+  <p class="sub">there's only one right answer here...</p>
+
+  <div class="btn-row" id="btn-row">
+    <button id="yes-btn" class="choice-btn">Yes 💕</button>
+    <button id="no-btn" class="choice-btn">No</button>
+  </div>
+
+  <p id="proposal-note"></p>
+</section>
+
+<!-- ================= MAIN SITE (hidden until she says yes) ================= -->
+<div id="site">
+
+  <!-- HERO -->
+  <section id="hero">
+    <h1>HAPPY GIRLFRIEND'S DAY, ANGEL!</h1>
+
+    <!-- 📸 REPLACE THE src BELOW WITH YOUR FAVORITE PHOTO OF YOU TWO -->
+    <img class="hero-photo" src="images/hero.jpg" alt="Angel and me" onerror="this.style.display='none'">
+
+    <p>Happy Girlfriend's Day to the person who makes everything better just by being in it. Thank you for the laughter that turns bad days around, the honesty that keeps me grounded, and the kind of love that feels like home. You show up for me in ways big and small, and I don't take that for granted. Here's to celebrating you today and every day — my favorite person, my safe place, my girl. I love you more than words can really capture. 👇</p>
+    <button id="surprise-btn" class="scroll-cta" type="button">See your surprise</button>
+  </section>
+
+  <section id="puzzle-section" class="surprise-step">
+    <h2 class="section-title">A little puzzle for you</h2>
+    <p class="section-sub">Put the pieces in the right spots to reveal the next part of your surprise.</p>
+
+    <div class="puzzle-card">
+      <div class="puzzle-board" id="puzzle-board"></div>
+      <div class="puzzle-tray" id="puzzle-pieces"></div>
+
+      <p id="puzzle-status" class="puzzle-status">Drag each piece into the matching spot.</p>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <h2 class="section-title">Our Favorite Moments</h2>
+    <p class="section-sub">a few of my favorite memories with you</p>
+
+      <div class="gallery" id="gallery-grid">
+      <div class="slideshow" id="slideshow">
+        <div class="slide active">
+          <figure>
+            <img src="images/photo1.jpg" alt="Memory 1" onerror="this.closest('figure').style.display='none'">
+          </figure>
+          <div class="slide-caption">Our favorite date with the best view.</div>
+        </div>
+        <div class="slide">
+          <figure>
+            <img src="images/photo2.jpg" alt="Memory 2" onerror="this.closest('figure').style.display='none'">
+          </figure>
+          <div class="slide-caption">When we laughed until we cried.</div>
+        </div>
+        <div class="slide">
+          <figure>
+            <img src="images/photo3.jpg" alt="Memory 3" onerror="this.closest('figure').style.display='none'">
+          </figure>
+          <div class="slide-caption">The moment everything felt perfect.</div>
+        </div>
+        <div class="slide">
+          <figure>
+            <img src="images/photo4.jpg" alt="Memory 4" onerror="this.closest('figure').style.display='none'">
+          </figure>
+          <div class="slide-caption">A night we’ll never forget.</div>
+        </div>
+        <div class="slide">
+          <figure>
+            <img src="images/photo5.jpg" alt="Memory 5" onerror="this.closest('figure').style.display='none'">
+          </figure>
+          <div class="slide-caption">The sweetest moment together.</div>
+        </div>
+        <div class="slide">
+          <figure>
+            <img src="images/photo6.jpg" alt="Memory 6" onerror="this.closest('figure').style.display='none'">
+          </figure>
+          <div class="slide-caption">A snapshot of how happy you make me.</div>
+        </div>
+        <div class="slide">
+          <figure>
+            <img src="images/photo7.jpg" alt="Memory 7" onerror="this.closest('figure').style.display='none'">
+          </figure>
+          <div class="slide-caption">Every day feels brighter with you.</div>
+        </div>
+        <div class="slide">
+          <figure>
+            <img src="images/photo8.jpg" alt="Memory 8" onerror="this.closest('figure').style.display='none'">
+          </figure>
+          <div class="slide-caption">Your smile is my favorite scene.</div>
+        </div>
+        <div class="slide">
+          <figure>
+            <img src="images/photo9.jpg" alt="Memory 9" onerror="this.closest('figure').style.display='none'">
+          </figure>
+          <div class="slide-caption">The best memories are the ones with you.</div>
+        </div>
+        <div class="slide-controls">
+          <button class="slide-button" id="prev-slide">Prev</button>
+          <button class="slide-button" id="next-slide">Next</button>
+        </div>
+        <div class="gallery-indicators" id="gallery-indicators"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SONG -->
+  <section id="song">
+    <h2 class="section-title">A Song For You</h2>
+    <p class="section-sub">this one's ours</p>
+
+    <div id="song-card">
+      <div class="album-art">
+        <img src="images/song.jpg" alt="Song cover" onerror="this.style.display='none'">
+      </div>
+      <div class="song-info">
+        <div class="track-meta">
+          <span class="platform-badge">Spotify</span>
+          <span>Now playing</span>
+        </div>
+        <h3>Those Eyes</h3>
+        <div class="artist">New West</div>
+        <audio controls>
+          <source src="audio/our_song.mp3" type="audio/mpeg">
+          Your browser doesn't support audio playback.
+        </audio>
+        <p class="note">"Cause all of the small things, more than you know..." Every time this song plays, it feels like it was written about us. Your smile, your laugh, and especially your eyes remind me of how beautiful life is with you by my side.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOVE LETTER -->
+  <section id="letter-section">
+    <h2 class="section-title">A Little Note</h2>
+    <p class="section-sub">just for you</p>
+
+    <div id="letter">
+      <!-- 💌 EDIT this letter with your own words -->
+      <p>Dear Baby,</p>
+      <p>Every time I listen to "Those Eyes" and "Adorn," all I can think about is you. "Those Eyes" reminds me of how much I cherish our quiet, everyday moments, and how the simple look in your eyes completely anchors me. At the same time, "Adorn" perfectly captures how I want to treat you—protecting you, lifting you up, and letting my love adorn your life every single day. You deserve the absolute world, and I am so grateful to have you by my side.</p>
+      <p>Happy Girlfriend's Day. NKWANCHETE</p>
+      <div class="signature">— Angel's boyfriend</div>
+    </div>
+  </section>
+
+  <footer>made with 💗 for Angel</footer>
+</div>
+
+<!-- SURPRISE MODAL -->
+<div id="surprise-modal" class="surprise-modal" aria-hidden="true">
+  <div class="surprise-modal-card">
+    <h3>One little question first 💗</h3>
+    <p>Enter the date we started dating.</p>
+    <input id="date-input" type="text" placeholder="DD MM YYYY" autocomplete="off">
+    <div class="modal-actions">
+      <button id="date-submit" class="choice-btn" type="button" style="padding: 0.85rem 1.4rem; font-size: 1rem;">Continue</button>
+      <button id="date-cancel" class="ghost-btn" type="button">Not now</button>
+    </div>
+    <p id="date-error" class="modal-error"></p>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button id="lightbox-close" aria-label="Close">×</button>
+  <img id="lightbox-img" src="" alt="Full size photo">
+</div>
+
+<script>
+  /* ---------------- Ambient floating hearts ---------------- */
+  const heartField = document.getElementById('heart-field');
+  const heartSymbols = ['💗','💕','💖','✨'];
+  function spawnHeart(){
+    const h = document.createElement('div');
+    h.className = 'floaty-heart';
+    h.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.fontSize = (1 + Math.random() * 1.4) + 'rem';
+    const duration = 8 + Math.random() * 6;
+    h.style.animationDuration = duration + 's';
+    heartField.appendChild(h);
+    setTimeout(() => h.remove(), duration * 1000);
+  }
+  setInterval(spawnHeart, 700);
+
+  /* ---------------- The uncatchable "No" button ---------------- */
+  const noBtn = document.getElementById('no-btn');
+  const proposal = document.getElementById('proposal');
+  const note = document.getElementById('proposal-note');
+
+  const dodgeLines = [
+    "nope, try again 😌",
+    "not happening, bestie",
+    "you can't catch this one",
+    "wrong button, try the pink one",
+    "He said keep trying 💅",
+    "so close! (not really)"
+  ];
+  let dodgeCount = 0;
+  let noIsRoaming = false;
+
+  function placeNoButtonRandomly(){
+    const btnWidth = noBtn.offsetWidth || 140;
+    const btnHeight = noBtn.offsetHeight || 56;
+    const maxX = window.innerWidth - btnWidth - 20;
+    const maxY = window.innerHeight - btnHeight - 20;
+    const x = Math.max(10, Math.random() * maxX);
+    const y = Math.max(10, Math.random() * maxY);
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+  }
+
+  function activateRoaming(){
+    if (noIsRoaming) return;
+    noIsRoaming = true;
+    noBtn.style.position = 'fixed';
+    placeNoButtonRandomly();
+  }
+
+  function dodge(){
+    activateRoaming();
+    placeNoButtonRandomly();
+    note.textContent = dodgeLines[dodgeCount % dodgeLines.length];
+    dodgeCount++;
+  }
+
+  // Dodge on hover/touch approach, and also on click just in case it's ever caught
+  noBtn.addEventListener('mouseenter', dodge);
+  noBtn.addEventListener('touchstart', function(e){ e.preventDefault(); dodge(); }, { passive: false });
+  noBtn.addEventListener('click', function(e){ e.preventDefault(); dodge(); });
+
+  // On mobile, also dodge if a finger gets close (pointer move), so it can't be tapped by surprise
+  document.addEventListener('pointermove', function(e){
+    if (!noIsRoaming) return;
+    const rect = noBtn.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+    if (dist < 90) dodge();
+  });
+
+  window.addEventListener('resize', () => { if (noIsRoaming) placeNoButtonRandomly(); });
+
+  /* ---------------- Yes button reveals the site ---------------- */
+  const yesBtn = document.getElementById('yes-btn');
+  const site = document.getElementById('site');
+
+  yesBtn.addEventListener('click', () => {
+    proposal.style.transition = 'opacity 0.6s ease';
+    proposal.style.opacity = '0';
+    setTimeout(() => {
+      proposal.style.display = 'none';
+      site.classList.add('visible');
+      window.scrollTo(0, 0);
+    }, 600);
+  });
+
+  /* ---------------- Surprise flow: date prompt -> puzzle -> gallery/song/note ---------------- */
+  const surpriseBtn = document.getElementById('surprise-btn');
+  const surpriseModal = document.getElementById('surprise-modal');
+  const dateInput = document.getElementById('date-input');
+  const dateSubmit = document.getElementById('date-submit');
+  const dateCancel = document.getElementById('date-cancel');
+  const dateError = document.getElementById('date-error');
+  const puzzleSection = document.getElementById('puzzle-section');
+  const puzzleStatus = document.getElementById('puzzle-status');
+  const puzzlePieces = document.getElementById('puzzle-pieces');
+  const puzzleBoard = document.getElementById('puzzle-board');
+  const gallerySection = document.getElementById('gallery');
+  const songSection = document.getElementById('song');
+  const letterSection = document.getElementById('letter-section');
+
+  function openSurpriseModal(){
+    surpriseModal.classList.add('open');
+    surpriseModal.setAttribute('aria-hidden', 'false');
+    dateInput.value = '';
+    dateError.textContent = '';
+    dateInput.focus();
+  }
+
+  function closeSurpriseModal(){
+    surpriseModal.classList.remove('open');
+    surpriseModal.setAttribute('aria-hidden', 'true');
+  }
+
+  function revealPuzzle(){
+    closeSurpriseModal();
+    puzzleSection.classList.add('active');
+    puzzleSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function revealSurpriseSections(){
+    gallerySection.classList.add('reveal-section');
+    gallerySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    setTimeout(() => {
+      songSection.classList.add('reveal-section');
+      songSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 1400);
+
+    setTimeout(() => {
+      letterSection.classList.add('reveal-section');
+      letterSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 2800);
+  }
+
+  function checkPuzzleSolved(){
+    const dropZones = Array.from(document.querySelectorAll('.drop-zone'));
+    const solvedCount = dropZones.filter(zone => zone.classList.contains('filled')).length;
+    if (solvedCount === 9) {
+      puzzleStatus.textContent = 'You did it! Your little surprise is opening...';
+      setTimeout(() => {
+        puzzleSection.classList.remove('active');
+        revealSurpriseSections();
+      }, 700);
+    }
+  }
+
+  surpriseBtn.addEventListener('click', openSurpriseModal);
+  dateCancel.addEventListener('click', closeSurpriseModal);
+  surpriseModal.addEventListener('click', (e) => {
+    if (e.target === surpriseModal) closeSurpriseModal();
+  });
+
+  dateSubmit.addEventListener('click', () => {
+    const answer = dateInput.value.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (answer.includes('11') && answer.includes('april') && answer.includes('2026')) {
+      revealPuzzle();
+    } else {
+      dateError.textContent = 'Not quite — keep looking for our special day.';
+    }
+  });
+
+  dateInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      dateSubmit.click();
+    }
+  });
+
+  let draggedPiece = null;
+  let puzzlePiecesList = [];
+
+  function buildPuzzle(){
+    const correctOrder = Array.from({ length: 9 }, (_, index) => index);
+    const shuffled = [...correctOrder].sort(() => Math.random() - 0.5);
+    puzzlePiecesList = shuffled;
+
+    puzzleBoard.innerHTML = '';
+    puzzlePieces.innerHTML = '';
+
+    correctOrder.forEach((index) => {
+      const zone = document.createElement('div');
+      zone.className = 'drop-zone';
+      zone.dataset.slot = String(index);
+      const row = Math.floor(index / 3);
+      const col = index % 3;
+      zone.style.backgroundImage = `url('images/puzzle.jpg')`;
+      zone.style.backgroundSize = '300% 300%';
+      zone.style.backgroundRepeat = 'no-repeat';
+      zone.style.backgroundPosition = `${col * 50}% ${row * 50}%`;
+      zone.style.opacity = '0.24';
+      zone.addEventListener('dragover', (e) => e.preventDefault());
+      zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        if (!draggedPiece) return;
+        const slot = Number(zone.dataset.slot);
+        const pieceIndex = Number(draggedPiece.dataset.index);
+        if (slot !== pieceIndex) {
+          puzzleStatus.textContent = 'Not quite — try a different spot.';
+          return;
+        }
+        if (zone.classList.contains('filled')) return;
+        zone.appendChild(draggedPiece);
+        draggedPiece.classList.add('placed');
+        draggedPiece.setAttribute('draggable', 'false');
+        zone.classList.add('filled');
+        zone.style.opacity = '1';
+        zone.style.backgroundImage = 'none';
+        puzzleStatus.textContent = 'Perfect! Keep going.';
+        checkPuzzleSolved();
+      });
+      puzzleBoard.appendChild(zone);
+    });
+
+    shuffled.forEach((index) => {
+      const piece = document.createElement('button');
+      piece.type = 'button';
+      piece.className = 'puzzle-piece';
+      piece.dataset.index = String(index);
+      piece.draggable = true;
+      const row = Math.floor(index / 3);
+      const col = index % 3;
+      piece.style.backgroundPosition = `${col * 50}% ${row * 50}%`;
+      piece.style.transform = `rotate(${(-8 + Math.random() * 16).toFixed(1)}deg)`;
+
+      piece.addEventListener('dragstart', (e) => {
+        draggedPiece = piece;
+        piece.classList.add('dragging');
+        e.dataTransfer.setData('text/plain', String(index));
+      });
+
+      piece.addEventListener('dragend', () => {
+        piece.classList.remove('dragging');
+        draggedPiece = null;
+      });
+
+      puzzlePieces.appendChild(piece);
+    });
+  }
+
+  buildPuzzle();
+
+  /* ---------------- Lightbox for gallery ---------------- */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const galleryGrid = document.getElementById('gallery-grid');
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const prevSlideButton = document.getElementById('prev-slide');
+  const nextSlideButton = document.getElementById('next-slide');
+  const indicators = document.getElementById('gallery-indicators');
+  let currentSlide = 0;
+
+  function updateSlides(){
+    slides.forEach((slide, index) => {
+      slide.classList.toggle('active', index === currentSlide);
+    });
+    const dots = indicators.querySelectorAll('.indicator');
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentSlide);
+    });
+  }
+
+  function createIndicators(){
+    indicators.innerHTML = '';
+    slides.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'indicator';
+      dot.addEventListener('click', () => {
+        currentSlide = index;
+        updateSlides();
+        resetAutoplay();
+      });
+      indicators.appendChild(dot);
+    });
+  }
+
+  prevSlideButton.addEventListener('click', () => {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    updateSlides();
+    resetAutoplay();
+  });
+
+  nextSlideButton.addEventListener('click', () => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    updateSlides();
+    resetAutoplay();
+  });
+
+  createIndicators();
+  updateSlides();
+
+  let autoplayInterval = null;
+  let autoplayTimeout = null;
+  function startAutoplay(){
+    if (autoplayInterval) return;
+    autoplayInterval = setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateSlides();
+    }, 5200);
+  }
+
+  function resetAutoplay(){
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+      autoplayInterval = null;
+    }
+    if (autoplayTimeout) {
+      clearTimeout(autoplayTimeout);
+      autoplayTimeout = null;
+    }
+    autoplayTimeout = setTimeout(() => {
+      startAutoplay();
+      autoplayTimeout = null;
+    }, 2200);
+  }
+
+  startAutoplay();
+
+  const slideshow = document.getElementById('slideshow');
+  slideshow.addEventListener('mouseenter', () => {
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+      autoplayInterval = null;
+    }
+  });
+  slideshow.addEventListener('mouseleave', () => startAutoplay());
+
+  galleryGrid.addEventListener('click', (e) => {
+    const img = e.target.closest('img');
+    if (!img) return;
+    lightboxImg.src = img.src;
+    lightbox.classList.add('open');
+  });
+
+  function closeLightbox(){ lightbox.classList.remove('open'); lightboxImg.src=''; }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+  /* ---------------- Gallery reveal animation ---------------- */
+  const galleryItems = document.querySelectorAll('.slide');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.25
+  });
+
+  galleryItems.forEach((item, index) => {
+    item.style.transitionDelay = `${index * 120}ms`;
+    revealObserver.observe(item);
+  });
+</script>
+
+</body>
+</html>
