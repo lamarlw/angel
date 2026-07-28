@@ -729,11 +729,16 @@
     .slide{
       position: relative;
       inset: auto;
-      opacity: 1;
+      opacity: 0;
       transform: none;
-      display: block;
-      pointer-events: auto;
+      display: none;
+      pointer-events: none;
       margin: 0 auto 1rem;
+    }
+    .slide.active{
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
     }
     .slide figure{
       width: 100%;
