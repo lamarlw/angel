@@ -906,7 +906,7 @@
         </div>
         <h3>Those Eyes</h3>
         <div class="artist">New West</div>
-        <audio controls>
+        <audio id="song-audio" controls preload="auto">
           <source src="audio/our_song.mp3" type="audio/mpeg">
           Your browser doesn't support audio playback.
         </audio>
@@ -1055,6 +1055,7 @@
   const gallerySection = document.getElementById('gallery');
   const songSection = document.getElementById('song');
   const letterSection = document.getElementById('letter-section');
+  const songAudio = document.getElementById('song-audio');
 
   function openSurpriseModal(){
     surpriseModal.classList.add('open');
@@ -1095,6 +1096,10 @@
     const solvedCount = dropZones.filter(zone => zone.classList.contains('filled')).length;
     if (solvedCount === 9) {
       puzzleStatus.textContent = 'You did it! Your little surprise is opening...';
+      if (songAudio) {
+        songAudio.currentTime = 0;
+        songAudio.play().catch(() => {});
+      }
       setTimeout(() => {
         puzzleSection.classList.remove('active');
         revealSurpriseSections();
